@@ -24,7 +24,7 @@ graph TD;
    1) Clone this repo and change directory to repo cloned directory.
 
         ``` 
-            git clone  https://github.com/redhat-na-ssa/dotnet-eShopOnWeb.git
+            git clone  https://github.com/henriorespati/dotnet-eShopOnWeb.git
             cd dotnet-eShopOnWeb
         ```    
    2) set the namespace as env variable
@@ -94,7 +94,7 @@ graph TD;
 
 Since we are building this project from repo home directory we need to specify s2i process to build specific project this can be achieved via build-env variable `DOTNET_STARTUP_PROJECT` . This variable should point to `.csproj` extension file. Please refer the following [documentation](https://github.com/redhat-developer/s2i-dotnetcore/tree/main/7.0/build#environment-variables) for more references. The other variable `ASPNETCORE_URLS` is a runtime variable which is used for deciding which port the service will serve.
 
-        oc new-app dotnet:7.0-ubi8~https://github.com/arunhari82/dotnet-eShopOnWeb.git --name public-api --build-env DOTNET_STARTUP_PROJECT=src/PublicApi/PublicApi.csproj -e ASPNETCORE_URLS='http://+:8080' --strategy=source
+        oc new-app dotnet:7.0-ubi8~https://github.com/henriorespati/dotnet-eShopOnWeb.git --name public-api --build-env DOTNET_STARTUP_PROJECT=src/PublicApi/PublicApi.csproj -e ASPNETCORE_URLS='http://+:8080' --strategy=source
 
 ### Mount the volume 
 
@@ -110,7 +110,7 @@ Since we are building this project from repo home directory we need to specify s
 
 ### Deploy new app
 
-      oc new-app dotnet:7.0-ubi8~https://github.com/arunhari82/dotnet-eShopOnWeb.git --name web-app --build-env DOTNET_STARTUP_PROJECT=src/Web/Web.csproj -e ASPNETCORE_URLS='http://+:8080' --strategy=source
+      oc new-app dotnet:7.0-ubi8~https://github.com/henriorespati/dotnet-eShopOnWeb.git --name web-app --build-env DOTNET_STARTUP_PROJECT=src/Web/Web.csproj -e ASPNETCORE_URLS='http://+:8080' --strategy=source
 
 ### Mount the volume       
 
