@@ -58,8 +58,8 @@ graph TD;
 
    Create PVC and Deployment to deploy SQL server 
 
-        oc create -f openshift/sql-server/pvc.yaml -n $namespace
-        oc create -f openshift/sql-server/Deployment.yaml -n $namespace
+        oc create -f https://raw.githubusercontent.com/henriorespati/dotnet-eShopOnWeb/main/openshift/sql-server/pvc.yaml -n $namespace
+        oc create -f https://raw.githubusercontent.com/henriorespati/dotnet-eShopOnWeb/main/openshift/sql-server/Deployment.yaml -n $namespace
 
    Create Service for SQL server
 
@@ -67,7 +67,7 @@ graph TD;
 
                    --- or ---
 
-        oc apply -f openshift/sql-server/Service.yaml  -n $namespace 
+        oc apply -f https://raw.githubusercontent.com/henriorespati/dotnet-eShopOnWeb/main/openshift/sql-server/Service.yaml  -n $namespace 
 
 
 
@@ -77,13 +77,13 @@ graph TD;
 
  ### Create Configmap
 
-        sed 's/CHANGE_DB_PASSWORD/'"$PASSWORD"'/g' openshift/publicApi/assets/appsettings.json > ./openshift/publicApi/assets/appsettings-passwordupdated.json
-        oc create cm  appsettings-cm  --from-file=appsettings.json=openshift/publicApi/assets/appsettings-passwordupdated.json
+        sed 's/CHANGE_DB_PASSWORD/'"$PASSWORD"'/g' https://raw.githubusercontent.com/henriorespati/dotnet-eShopOnWeb/main/openshift/publicApi/assets/appsettings.json > appsettings-passwordupdated.json
+        oc create cm  appsettings-cm  --from-file=appsettings-passwordupdated.json
         
           ------- or --------
 
-        sed 's/CHANGE_DB_PASSWORD/'"$PASSWORD"'/g' openshift/publicApi/configmap.yaml > openshift/publicApi/configmap-passwordupdated.yaml
-        oc create -f openshift/publicApi/configmap-passwordupdated.yaml
+        sed 's/CHANGE_DB_PASSWORD/'"$PASSWORD"'/g' https://raw.githubusercontent.com/henriorespati/dotnet-eShopOnWeb/main/openshift/publicApi/configmap.yaml > configmap-passwordupdated.yaml
+        oc create -f configmap-passwordupdated.yaml
 
 
 ### Import image as image stream
@@ -148,13 +148,13 @@ Install SQL Server which is a Prerequisite. This deployment uses a variation of 
 
  ### Create Configmap
 
-        sed 's/CHANGE_DB_PASSWORD/'"$PASSWORD"'/g' openshift/publicApi/assets/appsettings.json > ./openshift/publicApi/assets/appsettings-passwordupdated.json
-        oc create cm  appsettings-cm  --from-file=appsettings.json=openshift/publicApi/assets/appsettings-passwordupdated.json
+        sed 's/CHANGE_DB_PASSWORD/'"$PASSWORD"'/g' https://raw.githubusercontent.com/henriorespati/dotnet-eShopOnWeb/main/openshift/publicApi/assets/appsettings.json > appsettings-passwordupdated.json
+        oc create cm  appsettings-cm  --from-file=appsettings-passwordupdated.json
         
           ------- or --------
 
-        sed 's/CHANGE_DB_PASSWORD/'"$PASSWORD"'/g' openshift/publicApi/configmap.yaml > openshift/publicApi/configmap-passwordupdated.yaml
-        oc create -f openshift/publicApi/configmap-passwordupdated.yaml
+        sed 's/CHANGE_DB_PASSWORD/'"$PASSWORD"'/g' https://raw.githubusercontent.com/henriorespati/dotnet-eShopOnWeb/main/openshift/publicApi/configmap.yaml > configmap-passwordupdated.yaml
+        oc create -f configmap-passwordupdated.yaml
 
 ### Mount the volume 
 
