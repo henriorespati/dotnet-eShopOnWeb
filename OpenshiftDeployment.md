@@ -77,12 +77,14 @@ graph TD;
 
  ### Create Configmap
 
-        sed 's/CHANGE_DB_PASSWORD/'"$PASSWORD"'/g' https://raw.githubusercontent.com/henriorespati/dotnet-eShopOnWeb/main/openshift/publicApi/assets/appsettings.json > appsettings-passwordupdated.json
+        curl -O https://raw.githubusercontent.com/henriorespati/dotnet-eShopOnWeb/main/openshift/publicApi/assets/appsettings.json
+        sed 's/CHANGE_DB_PASSWORD/'"$PASSWORD"'/g' appsettings.json > appsettings-passwordupdated.json
         oc create cm  appsettings-cm  --from-file=appsettings-passwordupdated.json
         
           ------- or --------
 
-        sed 's/CHANGE_DB_PASSWORD/'"$PASSWORD"'/g' https://raw.githubusercontent.com/henriorespati/dotnet-eShopOnWeb/main/openshift/publicApi/configmap.yaml > configmap-passwordupdated.yaml
+        curl -O https://raw.githubusercontent.com/henriorespati/dotnet-eShopOnWeb/main/openshift/publicApi/configmap.yaml
+        sed 's/CHANGE_DB_PASSWORD/'"$PASSWORD"'/g' configmap.yaml > configmap-passwordupdated.yaml
         oc create -f configmap-passwordupdated.yaml
 
 
@@ -148,12 +150,14 @@ Install SQL Server which is a Prerequisite. This deployment uses a variation of 
 
  ### Create Configmap
 
-        sed 's/CHANGE_DB_PASSWORD/'"$PASSWORD"'/g' https://raw.githubusercontent.com/henriorespati/dotnet-eShopOnWeb/main/openshift/publicApi/assets/appsettings.json > appsettings-passwordupdated.json
+        curl -O https://raw.githubusercontent.com/henriorespati/dotnet-eShopOnWeb/main/openshift/publicApi/assets/appsettings.json
+        sed 's/CHANGE_DB_PASSWORD/'"$PASSWORD"'/g' appsettings.json > appsettings-passwordupdated.json
         oc create cm  appsettings-cm  --from-file=appsettings-passwordupdated.json
         
           ------- or --------
 
-        sed 's/CHANGE_DB_PASSWORD/'"$PASSWORD"'/g' https://raw.githubusercontent.com/henriorespati/dotnet-eShopOnWeb/main/openshift/publicApi/configmap.yaml > configmap-passwordupdated.yaml
+        curl -O https://raw.githubusercontent.com/henriorespati/dotnet-eShopOnWeb/main/openshift/publicApi/assets/appsettings.json
+        sed 's/CHANGE_DB_PASSWORD/'"$PASSWORD"'/g' configmap.yaml > configmap-passwordupdated.yaml
         oc create -f configmap-passwordupdated.yaml
 
 ### Mount the volume 
